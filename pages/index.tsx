@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { wallet } from '../utils/we3/wallet'
-import { walletDesconect } from '../utils/we3/wallet/desconect';
 
 export default function Home() {
 
