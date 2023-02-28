@@ -19,7 +19,7 @@ const providerOptions = {
             provider = window.ethereum;
             await provider.request({ method: 'eth_requestAccounts' })
           } else {
-            alert("No Metamesk Chain Wallet found");
+            alert("Possua uma carteira por meio da metamesk, binance chain ou coinbase");
           }
           return provider;
         }
@@ -40,7 +40,7 @@ const providerOptions = {
             provider = window.BinanceChain;
             await provider.request({ method: 'eth_requestAccounts' })
           } else {
-            alert("No Binance Chain Wallet found");
+            alert("Possua uma carteira por meio da metamesk, binance chain ou coinbase");
           }
           return provider;
         }
@@ -57,13 +57,19 @@ const providerOptions = {
         },
         package: walletlink,
         connector: async (_ : any, options : any) => {
-          const { appName, chainId } = options
+
+          const { appName, chainId } = options;
           const walletLink = new WalletLink({
             appName
           });
-          const provider = walletLink.makeWeb3Provider(chainId);
-          await provider.enable();
-          return provider;
+
+          if (walletLink !== null) {
+            let provider = walletLink.makeWeb3Provider(chainId);
+            await provider.enable();
+            return provider;
+          } else {
+            alert("Possua uma carteira por meio da metamesk, binance chain ou coinbase");
+          }
         },
     }
   };
